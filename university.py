@@ -18,14 +18,14 @@ class University:
                     "Business Analyst",
                     "Entrepreneur",
                     "Project Manager",
-                    "Account Manager"
+                    "Account Manager",
                 ]
-            }
+            },
         }
-        
+
     def generate_random_university():
         university = random.choice(universities)
-        
+
     def acceptance_letter():
         # the player gets an acceptance letter to a random college and they can choose to accept or reject.
         # If they reject the first univeristy, they will receive another letter from a random university.
@@ -33,10 +33,9 @@ class University:
         # Should the user not receive another offer they will be prompted again to choose what they want to do.
         # With each offer there's a 20% chance they will receive a full-ride scholarship.
         print("Congratulations ")
-        
+
     def study():
         pass
-    
-        
+
 
 universities = ["MIT", "IIT", "UIC", "Berkley"]
