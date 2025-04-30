@@ -102,11 +102,11 @@ class Person:
 
         for key, avatar in avatars.items():
             print(f"{key}. {avatar}")
-            
-            
+
+
 def create_player():
     # Initialize a "blank" person to call create_your_character on
     person = Person("", 0, "", "", "")
-    
+
     # Create the character
     return person.create_your_character()
