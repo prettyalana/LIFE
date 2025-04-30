@@ -23,7 +23,7 @@ def what_to_do_with_life():
 
 def life_choices():
     choices = {
-        1: "Go to university.",
+        1: "Go to university",
         2: "Become a streamer",
         3: "Take a gap year",
         4: "Work at your local cafe",
