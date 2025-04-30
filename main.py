@@ -13,6 +13,7 @@ def greeting(player):
 
 
 def instructions():
+    # TODO: Add game instructions
     print("To play the game of life: ")
 
 
