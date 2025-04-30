@@ -84,12 +84,26 @@ class Person:
         }
 
 
-# class Home:
-#     def __init__(self):
-#         pass
+class Home:
+    def __init__(self):
+        pass
 
-# class Store:
-#     def __init__(self):
-#         pass
 
-    
+class Store:
+    def __init__(self):
+        pass
+
+
+class Job:
+    def __init__(self):
+        pass
+
+
+class University:
+    def __init__(self):
+        pass
+
+
+class Family:
+    def __init__(self):
+        pass
