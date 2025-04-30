@@ -50,7 +50,7 @@ def life_choice_outcome(decision):
     elif decision == 4:
         job()
     elif decision == 5:
-        pass
+        job()
 
 
 def story(player):
