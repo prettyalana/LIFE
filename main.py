@@ -2,7 +2,7 @@
 # game flow / storytelling / interaction
 
 from person import create_player
-import university
+from university import University
 import job
 import home
 
@@ -43,9 +43,11 @@ def make_life_decision():
     return decision
 
 
-def life_choice_outcome(decision):
+def life_choice_outcome(decision, player):
     if decision == 1:
-        university()
+        # Create a new instance of University
+        life_university = University("LIFE University Instance")
+        life_university.attend_university(player)
     elif decision == 2:
         job()
     elif decision == 3:
@@ -80,7 +82,7 @@ def main():
 
     if player.age == 18:
         decision = make_life_decision()
-        life_choice_outcome(decision)
+        life_choice_outcome(decision, player)
 
 
 if __name__ == "__main__":

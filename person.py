@@ -7,6 +7,9 @@ class Person:
         self.gender = gender
         self.city = city
         self.appearance = appearance
+        self.grades = grades
+        self.loan = loan
+        self.money = money
 
     def create_your_character(self):
         name = input("Please enter your name: ").capitalize()
@@ -100,7 +103,9 @@ class Person:
 
         # If user chooses an appearance return the avatar
         if appearance_choice is not None:
-            return avatars.get(appearance_choice, "Invalid choice!")
+            avatar = avatars.get(appearance_choice, "Invalid choice!")
+            print(avatar)
+            return
 
         for key, avatar in avatars.items():
             print(f"{key}. {avatar}")
@@ -108,7 +113,13 @@ class Person:
 
 def create_player():
     # Initialize a "blank" person to call create_your_character on
-    person = Person("", 0, "", "", "")
+    person = Person(
+        "",
+        0,
+        "",
+        "",
+        "",
+    )
 
     # Create the character
     return person.create_your_character()
