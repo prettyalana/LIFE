@@ -1,3 +1,6 @@
+# Type of Logic:
+# game flow / storytelling / interaction
+
 from person import create_player
 import university
 import job
