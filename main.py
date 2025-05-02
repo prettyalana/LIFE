@@ -62,9 +62,9 @@ def story(player):
     print(
         f"Hi {player.name}! Your journey begins in the city of {player.city}. Let's start a new LIFE!"
     )
-    if player.age > 18:
+    if player.age > 18 or player.age < 18:
         time_travel = input(
-            f"You are currently {player.age} years old. Would you like to time travel back to 18 years old (y/n)? "
+            f"You are currently {player.age} years old. Would you like to time travel to 18 years old (y/n)? "
         ).lower()
         if time_travel == "y":
             player.age = 18
