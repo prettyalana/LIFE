@@ -1,4 +1,5 @@
 import random
+from person import Person
 
 
 class University:
@@ -90,13 +91,9 @@ class University:
             try:
                 major_choice = int(input("Please choose a major: "))
                 # .format fills out the curly braces {}
-                print(
-                    "You are now majoring in {}.".format(
-                        # Convert into a list to get the key
-                        list(self.university_data[major_choice].keys())[0]
-                    )
-                )
-                return major_choice
+                person.major = list(self.university_data[major_choice].keys())[0]
+                print(f"You are now majoring in {person.major}.")
+                return person.major
                 break
             except ValueError:
                 print("Please input 1 or 2.")
@@ -197,11 +194,11 @@ class University:
 
     def university_next_steps(self, person):
         next_steps = {
-            1: {"Study"},
-            2: {"Attend lecture"},
-            3: {"Skip class"},
-            4: {"Change majors"},
-            5: {"Go home"},
+            1: {"attend lecture"},
+            2: {"study"},
+            3: {"skip class"},
+            4: {"change majors"},
+            5: {"go home"},
         }
         for key, option in next_steps.items():
             print(f"{key}. {", ".join(option)}")
@@ -214,10 +211,10 @@ class University:
                 self.university_next_steps(person)
                 next_steps_prompt = int(input("What do you want to do (1-5)? "))
                 if next_steps_prompt == 1:
-                    self.study(person)
+                    self.attend_lecture(person)
                     self.grade_scale(person)
                 elif next_steps_prompt == 2:
-                    self.attend_lecture(person)
+                    self.study(person)
                     self.grade_scale(person)
                 elif next_steps_prompt == 3:
                     self.skip_lecture(person)
@@ -232,8 +229,72 @@ class University:
             except ValueError:
                 print("Please input a number between 1-5.")
 
+    def graduate(self, person):
+        if person.name == "Alana" or person.appearance == 3 and person.grades >= 70:
+            print(
+                r'''
+            
+                                                        ,jf
+                                                        ,jf
+   _am,    ,_am,  ,_g_oam,    _am,   _g_ag,   _am,   koewkovg   _mm_
+ ,gF  @._-gF   @-"  jf   @  ,gF  @  ^ NX  #_,gF  @     jf      qK  "
+ 8Y      8Y    d   j#   jF .8Y  ,d   dY     8Y   d    jf       *b,
+jK   ,  jK   ,N   jN   jF  :K  ,Z  ,jF     jK  ,Z"  ,jfk,       dN.
+ NbpP    NbpP    dP   dFk_o8NbpP"V^dF       NbpY"V^"dF "dYo-"*h,W"
+                         ,gF',@'
+                        :8K  j8
+                         "*w*"
+        |""-..._____
+     '-.____    _````"""""'`|
+         \  ``` ``"---... _ |
+         |              /  /#\
+         }--..______..-{   ###
+        }}}}} _   _ {{{{{
+        }}}}  6   6  {{{{
+       {{{{{    ^    }}}}}
+      {{{{{{\  -=-  /}}}}}}
+      {{{{{{{;.___.;}}}}}}}
+       {{{{{{{)   (}}}}}}}'
+        `""'"':   :'"'"'`
+               `@`
+'''
+            )
+            print(f"You have graduated with a degree in {person.major}")
+        elif person.grades >= 70:
+            print(
+                r"""
+               
+                _______________________ _
+            ,'     _j'_.'         .'``.\
+           /      /,--.\         /,--. \\
+          |      |({{}})|       |/,--,\||
+          |       \`--'/        ||\___///
+           \       /""/\         \`.__//
+            `.____/  /._`.________`._.'   
+                 /  /
+                /,'\|  
+                                                        ,jf
+                                                        ,jf
+   _am,    ,_am,  ,_g_oam,    _am,   _g_ag,   _am,   koewkovg   _mm_
+ ,gF  @._-gF   @-"  jf   @  ,gF  @  ^ NX  #_,gF  @     jf      qK  "
+ 8Y      8Y    d   j#   jF .8Y  ,d   dY     8Y   d    jf       *b,
+jK   ,  jK   ,N   jN   jF  :K  ,Z  ,jF     jK  ,Z"  ,jfk,       dN.
+ NbpP    NbpP    dP   dFk_o8NbpP"V^dF       NbpY"V^"dF "dYo-"*h,W"
+                         ,gF',@'
+                        :8K  j8
+                         "*w*" 
+                  
+                  """
+            )
+            print(f"You have graduated with a degree in {person.major}")
+        else:
+            # TODO: Logic for when a user fails class
+            print("Unfortunately you failed")
+            pass
+
     def attend_university(self, person):
         self.acceptance_letter(person)
         self.choose_your_major(person)
         self.university_next_steps(person)
         self.attend_classes(person)
+        self.graduate(person)

@@ -13,15 +13,15 @@ grocery_store_inventory = {
             "bananas": 0.59,
         },
         "vegetables": {
-            "potatoes": 0.50, 
-            "broccoli": 1.00, 
-            "squash": 1.99, 
-            "kale": 2.99, 
-            "spinach": 0.99
+            "potatoes": 0.50,
+            "broccoli": 1.00,
+            "squash": 1.99,
+            "kale": 2.99,
+            "spinach": 0.99,
         },
     },
-    "snacks": ["chips", "ice cream"],
-    "meat and poultry": ["beef", "chicken", "lamb"],
+    "snacks": {"chips": 2.99, "ice cream": 3.99, "candy bar": 0.99},
+    "meat and poultry": {"beef": 7.99, "chicken": 5.99, "lamb": 10.99},
 }
 
 shopping_center_inventory = {

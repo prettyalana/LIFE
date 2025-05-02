@@ -94,5 +94,6 @@ def main():
         life_choice_outcome(decision, player)
 
 
+# Only run this here and not in imports
 if __name__ == "__main__":
     main()

@@ -2,13 +2,23 @@ class Person:
     # setting default values so that if someone creates a Person object without providing arguments (grades, loan, balance)
     # the constructor doesn't fail, it just assigns 0 to each.
     def __init__(
-        self, name, age, gender, city, appearance, grades=0, loan=0, balance=0
+        self,
+        name,
+        age,
+        gender,
+        city,
+        appearance,
+        major=None,
+        grades=0,
+        loan=0,
+        balance=0,
     ):
         self.name = name
         self.age = age
         self.gender = gender
         self.city = city
         self.appearance = appearance
+        self.major = major
         self.grades = grades
         self.loan = loan
         self.balance = balance
@@ -53,11 +63,12 @@ class Person:
                     input("Choose your character's appearance (1-4): ")
                 )
 
-                # Get the avatar based on the chosen number
-                appearance = self.choose_your_avatar(appearance_choice)
+                # Displays the avatar ASCII based on the user's appearance choice
+                self.choose_your_avatar(appearance_choice)
 
                 # return the new instance of the Person class
-                return Person(name, age, gender, city, appearance)
+                # return the appearance_choice number instead of the ASCII art for the graduate() method in University
+                return Person(name, age, gender, city, appearance_choice)
             except ValueError:
                 print("Please enter a number between 1-4.")
 
