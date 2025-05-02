@@ -9,17 +9,16 @@ import home
 
 def greeting(player):
     print(f"Welcome {player.name} to the game of LIFE")
-
-    while True:
-        try:
-            instruction_prompt = input(
-                "Would you like to see the instructions (y/n)? "
-            ).lower()
-
-            if instruction_prompt == "y":
-                instructions()
-        except TypeError:
-            print('Please type "y' or 'n" ')
+    
+    instruction_prompt = input("Would you like to see the instructions (y/n)? ").lower()
+    
+    if instruction_prompt == "y":
+        instructions()
+    elif instruction_prompt == "n":
+        # Pass and do nothing to keep the game moving 
+        pass
+    else:
+        print('Please type "y' or 'n" ')
 
 
 def instructions():
