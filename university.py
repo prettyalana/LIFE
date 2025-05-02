@@ -25,7 +25,7 @@ class University:
                         "Account Manager",
                     ]
                 }
-            }
+            },
         }
 
     def generate_random_university(self):
@@ -39,6 +39,8 @@ class University:
                 f"Congratulations {person.name}! You have been awarded with a full ride scholarship!"
             )
             # loan gets wiped
+            # TODO: This seems redundant because loan is already 0. However I want some sort indicator that there is no loan
+            # revisit this later
             person.loan = 0
             return True
         return False
@@ -55,12 +57,21 @@ class University:
         if offer_letter == "y":
             if not scholarship:
                 person.loan += 20000
-                person.money -= 20000
+                person.balance -= 20000
             print(
                 f"""
                 You are now attending {university_name}. 
                 Your loan is: {person.loan}
-                Your balance is: {person.money}."""
+                Your balance is: {person.balance}."""
+            )
+        elif scholarship:
+            person.loan = 0
+            person.balance = 0
+            print(
+                f"""
+            You are now attending {university_name}. 
+            Your tuition has been fully covered by the scholarship.
+            Your balance is: {person.balance}."""
             )
             return person.loan and person.money
         else:
@@ -103,36 +114,41 @@ class University:
     def attend_lecture(self, person):
         print(
             r"""
-            __ _____ ____ _____ ______ _______ _____ ______ ______ ______ ___
-            __]_____]____]_____]______]_______]_____]______]______]______]___]
-                        _                       _______  |||"||;;|.||##||=|||
-            _                           _     |   *  3| |||-|| =|-||==||+|||
-            ____________       _              |       | |||_||__|_||__||_|||
-            |`.   --__     `.        _______    |       | ||================||
-            |  `._____________`.  .'|.-----.|   _ ======| ||| | -|&|^^|!!|-|||
-            |   | .-----------.| |  ||     ||  (o))   _ | ||| |**|=|+-|##|=|||
-            |   | |  .-------.|| |  ||     ||  /||   / \`._|  .-.|_|__|__|_|||
-            |   | |  |       |||_`..|'_____'| //||___\_/.'\| (( ))==========||
-            |   | |`.|  ==== ||| | `---------(o)||         \  /-'-=|+|.-|-'|||
-            |`. | |`.|_______|||/|______________||__.--._ (o)/|=|;:|-|&&|&&|||
-            |  `|_|===========||_|                 (____)-.'(o)_|__|_|__|__|||
-            |   | |  .-------.||                           `._\=============||
-            |   | |  |       |||                             `.     |       ||
-            |   | |`.|  ==== |||`._____________________________`.  o|o      ||
-            |`. | |`.|_______||| |._.----------------.__.-------.|__|_______||
-            |  `|_|===========|| || '----------------'  | .---. ||  __
-            |   | |  .-------.|| ||               |     |_______||.'\.'.
-            |   | |  |       ||| || ______________|     | .---. ||'.__.'
-            |   | |`.|  ==== ||| ||                `.   |_______|||  _ |
-            `. | |`.|_______||| ||                  `. | .---. |||_  ||
-            `|_|========LGB||`||                    `|_______|||____|
-                                `.                    `.
-                                    `.____________________`."""
+                               .------------------------.
+                              |    Well, Genoveva, do    |
+    __________________________|   you know the answer?   |
+   |  _________________________'-------------,----------'
+   | |                         ____         /           |
+   | |  2x+3x/y2x = 4xy-6y    (___ \        |           |
+   | |                       ( (..) )       |           |
+   | |                  \\\' |( < ,) )      |           |
+   | |                   `|_\_\)--(  )      |           |
+   | |                    \  ,\"\"\"(___)      |           |
+   | |                     `'\_  __  \      |           |
+   | |                        |    ,  )     |           |
+   | |_______________________ /  _/  /______|           |
+   |________________________ I ///\./I__________________|
+                             |       |
+                             |       |
+                             '-.._..-'   .---------------------------.
+                               | |  )   (  Mmm... Napoleon Bonaparte? )
+                              _| | /     '--------,------------------'
+                            .'_.`_/7            _/
+                                         .((()           Z  z
+              _..._                     /_ (())        z
+             /     \                   <   ?)))     Z
+             |     |                    \_.((((
+             \  __ /                    __()))))
+              \(__)                    /        \
+            __//  \                   /   ,..--'^|
+          /`  (____)-.               /  ( |      |
+         /            \                 / |..--/^
+        """
         )
         person.grades += 50
 
     def skip_lecture(self, person):
-        self.grades -= 20
+        person.grades -= 20
 
     # TODO: If the grade starts at 0 no grades should be available
     def grade_scale(self, person):
@@ -169,7 +185,6 @@ class University:
 
         while count < 10:
             next_steps_prompt = int(input("What do you want to do (1-4)? "))
-
             if next_steps_prompt == 1:
                 self.study(person)
                 self.grade_scale(person)

@@ -1,7 +1,9 @@
 class Person:
-    # setting default values so that if someone creates a Person object without providing arguments (grades, loan, money)
+    # setting default values so that if someone creates a Person object without providing arguments (grades, loan, balance)
     # the constructor doesn't fail, it just assigns 0 to each.
-    def __init__(self, name, age, gender, city, appearance, grades=0, loan=0, money=0):
+    def __init__(
+        self, name, age, gender, city, appearance, grades=0, loan=0, balance=0
+    ):
         self.name = name
         self.age = age
         self.gender = gender
@@ -9,7 +11,7 @@ class Person:
         self.appearance = appearance
         self.grades = grades
         self.loan = loan
-        self.money = money
+        self.balance = balance
 
     def create_your_character(self):
         name = input("Please enter your name: ").capitalize()
