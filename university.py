@@ -96,6 +96,8 @@ class University:
         )
         return major_choice
 
+    # Use r string for ASCII art that contains backslashes \
+    # Tells Python not to interpret backslahes as escape characters
     def study(self, person):
         print(
             r"""You are now studying for class.
@@ -170,12 +172,17 @@ class University:
         print(f"{letter_grade}")
         return letter_grade
 
+    def change_majors(self):
+        # Logic that displays the majors from choose_your_major()
+        pass
+
     def university_next_steps(self, person):
         next_steps = {
-            1: {"study"},
-            2: {"attend lecture"},
-            3: {"skip class"},
-            4: {"go home"},
+            1: {"Study"},
+            2: {"Attend lecture"},
+            3: {"Skip class"},
+            4: {"Change majors"},
+            5: {"Go home"},
         }
         for key, option in next_steps.items():
             print(f"{key}. {", ".join(option)}")
@@ -184,7 +191,7 @@ class University:
         count = 0
 
         while count < 10:
-            next_steps_prompt = int(input("What do you want to do (1-4)? "))
+            next_steps_prompt = int(input("What do you want to do (1-5)? "))
             if next_steps_prompt == 1:
                 self.study(person)
                 self.grade_scale(person)
@@ -194,13 +201,12 @@ class University:
             elif next_steps_prompt == 3:
                 self.skip_lecture(person)
             elif next_steps_prompt == 4:
+                # go change majors
+                break
+            elif next_steps_prompt == 5:
                 # go home
                 break
             count += 1
-
-    # TODO: Allow user to change majors
-    # def change_majors(self):
-    #     pass
 
     def attend_university(self, person):
         self.acceptance_letter(person)
