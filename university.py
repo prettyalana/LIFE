@@ -29,7 +29,7 @@ class University:
         }
 
     def generate_random_university(self):
-        universities = ["MIT", "IIT", "UIC", "Berkley", "Stanford"]
+        universities = ["MIT", "IIT", "UIC", "Berkeley", "Stanford"]
         return random.choice(universities)
 
     def full_ride_scholarship(self, person):
