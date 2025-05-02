@@ -62,7 +62,7 @@ class University:
                 f"""
                 You are now attending {university_name}. 
                 Your loan is: {person.loan}
-                Your balance is: {person.balance}."""
+                Your balance is: {person.balance}"""
             )
         elif scholarship:
             person.loan = 0
@@ -71,7 +71,7 @@ class University:
                 f"""
             You are now attending {university_name}. 
             Your tuition has been fully covered by the scholarship.
-            Your balance is: {person.balance}."""
+            Your balance is: {person.balance}"""
             )
             return person.loan and person.money
         else:
@@ -79,22 +79,27 @@ class University:
                 offer_letter
             else:
                 # Prompt user again
-                pass  # Fixed: added `pass` to handle incomplete block
+                pass  
 
     def choose_your_major(self, person):
         for key, major_data in self.university_data.items():
             for major in major_data:
                 print(f"{key}. {major}")
 
-        major_choice = int(input("Please choose a major: "))
-        # .format fills out the curly braces {}
-        print(
-            "You are now majoring in {}.".format(
-                # Convert into a list to get the key
-                list(self.university_data[major_choice].keys())[0]
-            )
-        )
-        return major_choice
+        while True:
+            try:
+                major_choice = int(input("Please choose a major: "))
+                # .format fills out the curly braces {}
+                print(
+                    "You are now majoring in {}.".format(
+                        # Convert into a list to get the key
+                        list(self.university_data[major_choice].keys())[0]
+                    )
+                )
+                return major_choice
+                break
+            except ValueError:
+                print("Please input 1 or 2.")
 
     # Use r string for ASCII art that contains backslashes \
     # Tells Python not to interpret backslahes as escape characters
@@ -150,6 +155,18 @@ class University:
         person.grades += 50
 
     def skip_lecture(self, person):
+        print("""
+              
+░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓████████▓▒░▒▓████████▓▒░▒▓████████▓▒░       ░▒▓██████▓▒░░▒▓█▓▒░       ░▒▓██████▓▒░ ░▒▓███████▓▒░▒▓███████▓▒░ 
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░         ░▒▓█▓▒░          ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░        
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░         ░▒▓█▓▒░          ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░        
+ ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓██████▓▒░ ░▒▓██████▓▒░    ░▒▓█▓▒░          ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓████████▓▒░░▒▓██████▓▒░░▒▓██████▓▒░  
+   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░         ░▒▓█▓▒░          ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░ 
+   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░         ░▒▓█▓▒░          ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░ 
+   ░▒▓█▓▒░    ░▒▓██████▓▒░ ░▒▓██████▓▒░       ░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░         ░▒▓█▓▒░           ░▒▓██████▓▒░░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░▒▓███████▓▒░  
+                                                                                                                                                                            
+              """)
+        print("Your grades are going down.")
         person.grades -= 20
 
     # TODO: If the grade starts at 0 no grades should be available
@@ -191,22 +208,27 @@ class University:
         count = 0
 
         while count < 10:
-            next_steps_prompt = int(input("What do you want to do (1-5)? "))
-            if next_steps_prompt == 1:
-                self.study(person)
-                self.grade_scale(person)
-            elif next_steps_prompt == 2:
-                self.attend_lecture(person)
-                self.grade_scale(person)
-            elif next_steps_prompt == 3:
-                self.skip_lecture(person)
-            elif next_steps_prompt == 4:
-                # go change majors
-                break
-            elif next_steps_prompt == 5:
-                # go home
-                break
-            count += 1
+            try:
+                self.university_next_steps(person)
+                next_steps_prompt = int(input("What do you want to do (1-5)? "))
+                if next_steps_prompt == 1:
+                    self.study(person)
+                    self.grade_scale(person)
+                elif next_steps_prompt == 2:
+                    self.attend_lecture(person)
+                    self.grade_scale(person)
+                elif next_steps_prompt == 3:
+                    self.skip_lecture(person)
+                    self.grade_scale(person)
+                elif next_steps_prompt == 4:
+                    # go change majors
+                    break
+                elif next_steps_prompt == 5:
+                    # go home
+                    break
+                count += 1
+            except ValueError:
+                print("Please input a number between 1-5.")
 
     def attend_university(self, person):
         self.acceptance_letter(person)
