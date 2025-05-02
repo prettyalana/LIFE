@@ -9,10 +9,17 @@ import home
 
 def greeting(player):
     print(f"Welcome {player.name} to the game of LIFE")
-    instruction_prompt = input("Would you like to see the instructions (y/n)? ").lower()
 
-    if instruction_prompt == "y":
-        instructions()
+    while True:
+        try:
+            instruction_prompt = input(
+                "Would you like to see the instructions (y/n)? "
+            ).lower()
+
+            if instruction_prompt == "y":
+                instructions()
+        except TypeError:
+            print('Please type "y' or 'n" ')
 
 
 def instructions():
@@ -21,7 +28,7 @@ def instructions():
 
 
 def what_to_do_with_life():
-    return input("What do you want to do with your life (1-5)? ")
+    return int(input("What do you want to do with your life (1-5)? "))
 
 
 def life_choices():
@@ -39,8 +46,11 @@ def life_choices():
 
 def make_life_decision():
     life_choices()
-    decision = int(what_to_do_with_life())
-    return decision
+    try:
+        decision = int(what_to_do_with_life())
+        return decision
+    except ValueError:
+        print("Please input a number.")
 
 
 def life_choice_outcome(decision, player):

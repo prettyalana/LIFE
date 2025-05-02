@@ -25,20 +25,41 @@ class Person:
             except ValueError:
                 print("Please enter a number.")
 
-        gender = input("Please enter your gender: ").capitalize()
+        # TODO: These two are redundant; make DRY
+        while True:
+            gender = input("Please enter your gender: ").capitalize()
 
-        city = input("Please enter a city: ").title()
+            # Error handling to check if gender is an alphabetical value
+            if gender.isalpha():
+                break
+            else:
+                print("Please enter a alphabetical value.")
+
+        while True:
+            city = input("Please enter a city: ").title()
+
+            if city.isalpha():
+                break
+            else:
+                print("Please enter a alphabetical value.")
 
         # Display the avatars before the user chooses
         self.choose_your_avatar()
 
-        appearance_choice = int(input("Choose your character's appearance (1-4): "))
+        while True:
+            try:
 
-        # Get the avatar based on the chosen number
-        appearance = self.choose_your_avatar(appearance_choice)
+                appearance_choice = int(
+                    input("Choose your character's appearance (1-4): ")
+                )
 
-        # return the new instance of the Person class
-        return Person(name, age, gender, city, appearance)
+                # Get the avatar based on the chosen number
+                appearance = self.choose_your_avatar(appearance_choice)
+
+                # return the new instance of the Person class
+                return Person(name, age, gender, city, appearance)
+            except ValueError:
+                print("Please enter a number between 1-4.")
 
     # Set appearance_choice parameter to none to display the avatars before a user chooses a number
     def choose_your_avatar(self, appearance_choice=None):
@@ -56,7 +77,11 @@ class Person:
       /   |   |     |    \\
       |    \\  |*    /    |
       \\_   |\\_|____/|  __/
-            """,
+                              
+                              
+                              
+                              
+    """,
             2: """
              ////^\\\\
             | ^   ^ |
@@ -70,7 +95,10 @@ class Person:
         /\\_/|        |\\_/\\
        / /  |        |  \\ \\
       ( <   |        |   > )
-            """,
+                              
+                              
+                              
+    """,
             3: """
                  _.._           
                .'  ..=`_         
@@ -82,32 +110,38 @@ class Person:
          (  .|  |   __  ' /      
          |  |/ / \\  `- /( |     
          )_.:./)   `--'._\\ 
-        """,
+                              
+                              
+                              
+                              
+                              
+    """,
             4: """
-                        .------.                                     
-                      .'  .-.    `.                                   
-                    .'  .'  ; `.   \\                                  
-                   /   /    :   \\   \\                                 
-                  /   /-.___;\\   ;   ;                                
-                 /   :;--.  .-^-.:   :                                
-                :    ;:`   :   :                                
-                ;   : ;  O   O   ;   ;                                
-                :   ; :    +     /  .'                                 
-                 \\  ;  \\  --' .:s-"                                   
-                  "-:.-"`.__.-";                                      
-                         :     :                                      
-                         ;     :                                      
-                  _..+-""._    _"t-.._                                
-               .-"    \\    "  '  :    `.                              
-              /        `-.______.'      \\  
-            """,
+            .------.                                     
+          .'  .-.    `.                                   
+        .'  .'  ; `.   \\                                  
+       /   /    :   \\   \\                                 
+      /   /-.___;\\   ;   ;                                
+     /   :;--.  .-^-.:   :                                
+    :    ;:`   :   :                                    
+    ;   : ;  O   O   ;   ;                                
+    :   ; :    +     /  .'                                 
+     \\  ;  \\  --' .:s-"                                   
+      "-:.-"`.__.-";                                      
+             :     :                                      
+             ;     :                                      
+      _..+-""._    _"t-.._                                
+   .-"    \\    "  '  :    `.                              
+  /        `-.______.'      \\  
+                              
+    """,
         }
 
         # If user chooses an appearance return the avatar
         if appearance_choice is not None:
             avatar = avatars.get(appearance_choice, "Invalid choice!")
             print(avatar)
-            return
+            return avatar
 
         for key, avatar in avatars.items():
             print(f"{key}. {avatar}")
