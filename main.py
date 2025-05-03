@@ -43,6 +43,7 @@ def life_choices():
 
     for key, choice in choices.items():
         print(f"{key}. {choice}")
+    return choices
 
 
 def make_life_decision():
@@ -50,7 +51,7 @@ def make_life_decision():
     while True:
         try:
             decision = int(what_to_do_with_life())
-            if decision in range(1, 5):
+            if decision in life_choices():
                 return decision
             else:
                 print("invalid number.")

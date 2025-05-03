@@ -83,7 +83,7 @@ class University:
                     # Prompt user again
                     pass
             else:
-                print('Please enter "y' or "\n")
+                print('Please enter "y" or "n".')
 
     def choose_your_major(self, person):
         for key, major_data in self.university_data.items():
