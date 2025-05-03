@@ -11,14 +11,16 @@ def greeting(player):
     print(f"Welcome {player.name} to the game of LIFE")
 
     while True:
-        instruction_prompt = input("Would you like to see the instructions (y/n)? ").lower()
+        instruction_prompt = input(
+            "Would you like to see the instructions (y/n)? "
+        ).lower()
         if instruction_prompt.isalpha() and instruction_prompt == "y":
             instructions()
             break
         elif instruction_prompt.isalpha() and instruction_prompt == "n":
             break
         else:
-            print('Please type \"y" or "n\" ')
+            print('Please type "y" or "n" ')
 
 
 def instructions():
@@ -48,7 +50,7 @@ def make_life_decision():
     while True:
         try:
             decision = int(what_to_do_with_life())
-            if decision in range(1,5):
+            if decision in range(1, 5):
                 return decision
             else:
                 print("invalid number.")
@@ -75,7 +77,7 @@ def story(player):
     print(
         f"Hi {player.name}! Your journey begins in the city of {player.city}. Let's start a new LIFE!"
     )
-    
+
     while True:
         if player.age > 18 or player.age < 18:
             time_travel = input(
@@ -90,8 +92,7 @@ def story(player):
             elif time_travel.isalpha() and time_travel == "n":
                 break
             else:
-                print('Please type \"y" or "n\" ')
-            
+                print('Please type "y" or "n" ')
 
 
 def main():
