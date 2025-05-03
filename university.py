@@ -55,32 +55,35 @@ class University:
             f"Congratulations {person.name}! You have been accepted into {university_name}! Would you like to accept this offer (y/n)? "
         ).lower()
 
-        if offer_letter == "y":
-            if not scholarship:
-                person.loan += 20000
-                person.balance -= 20000
-            print(
-                f"""
-                You are now attending {university_name}. 
-                Your loan is: {person.loan}
-                Your balance is: {person.balance}"""
-            )
-        elif scholarship:
-            person.loan = 0
-            person.balance = 0
-            print(
-                f"""
-            You are now attending {university_name}. 
-            Your tuition has been fully covered by the scholarship.
-            Your balance is: {person.balance}"""
-            )
-            return person.loan and person.money
-        else:
-            if random.random() < 0.5:
-                offer_letter
+        while True:
+            if offer_letter.isalpha() and offer_letter == "y":
+                if not scholarship:
+                    person.loan += 20000
+                    person.balance -= 20000
+                    print(
+                        f"""
+                        You are now attending {university_name}. 
+                        Your loan is: {person.loan}
+                        Your balance is: {person.balance}"""
+                    )
+                elif scholarship:
+                    person.loan = 0
+                    person.balance = 0
+                    print(
+                        f"""
+                    You are now attending {university_name}. 
+                    Your tuition has been fully covered by the scholarship.
+                    Your balance is: {person.balance}"""
+                    )
+                    return person.loan and person.money
+            elif offer_letter.isalpha() and offer_letter == "n":
+                if random.random() < 0.5:
+                    offer_letter
+                else:
+                    # Prompt user again
+                    pass
             else:
-                # Prompt user again
-                pass
+                print("Please enter \"y" or "\n")
 
     def choose_your_major(self, person):
         for key, major_data in self.university_data.items():

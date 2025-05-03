@@ -10,15 +10,15 @@ import home
 def greeting(player):
     print(f"Welcome {player.name} to the game of LIFE")
 
-    instruction_prompt = input("Would you like to see the instructions (y/n)? ").lower()
-
-    if instruction_prompt == "y":
-        instructions()
-    elif instruction_prompt == "n":
-        # Pass and do nothing to keep the game moving
-        pass
-    else:
-        print('Please type "y' or 'n" ')
+    while True:
+        instruction_prompt = input("Would you like to see the instructions (y/n)? ").lower()
+        if instruction_prompt.isalpha() and instruction_prompt == "y":
+            instructions()
+            break
+        elif instruction_prompt.isalpha() and instruction_prompt == "n":
+            break
+        else:
+            print('Please type \"y" or "n\" ')
 
 
 def instructions():
@@ -45,11 +45,15 @@ def life_choices():
 
 def make_life_decision():
     life_choices()
-    try:
-        decision = int(what_to_do_with_life())
-        return decision
-    except ValueError:
-        print("Please input a number.")
+    while True:
+        try:
+            decision = int(what_to_do_with_life())
+            if decision in range(1,5):
+                return decision
+            else:
+                print("invalid number.")
+        except ValueError:
+            print("Please input a number between 1-5.")
 
 
 def life_choice_outcome(decision, player):
@@ -71,17 +75,23 @@ def story(player):
     print(
         f"Hi {player.name}! Your journey begins in the city of {player.city}. Let's start a new LIFE!"
     )
-    if player.age > 18 or player.age < 18:
-        time_travel = input(
-            f"You are currently {player.age} years old. Would you like to time travel to 18 years old (y/n)? "
-        ).lower()
-        if time_travel == "y":
-            player.age = 18
-            print(
-                f"You have traveled back in time. You are now {player.age} years old."
-            )
-    else:
-        pass
+    
+    while True:
+        if player.age > 18 or player.age < 18:
+            time_travel = input(
+                f"You are currently {player.age} years old. Would you like to time travel to 18 years old (y/n)? "
+            ).lower()
+            if time_travel.isalpha() and time_travel == "y":
+                player.age = 18
+                print(
+                    f"You have traveled back in time. You are now {player.age} years old."
+                )
+                break
+            elif time_travel.isalpha() and time_travel == "n":
+                break
+            else:
+                print('Please type \"y" or "n\" ')
+            
 
 
 def main():
